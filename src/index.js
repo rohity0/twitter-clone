@@ -6,7 +6,9 @@ const register = require("../Routes/registerRoutes");
 const app = express();
 const bodyParser  = require("body-parser");
 const connect = require("../config/db");
-const session = require('express-session')
+const session = require('express-session');
+const logout = require("../Routes/logout");
+const posts = require("../Routes/api/post");
 
 app.use(express.json());
 
@@ -22,9 +24,10 @@ app.use(session({
 }))
 
 
+
 app.use("/login", login);
 app.use("/register", register);
-
+app.use("/logout", logout)
 app.get("/", requireLogin, (req,res)=>{
       var paylaod = {
           title : "Twitter",
@@ -32,6 +35,9 @@ app.get("/", requireLogin, (req,res)=>{
       }
        res.status(200).render("home", paylaod)
 })
+
+// api 
+app.use("/api/posts", posts)
 
 
 

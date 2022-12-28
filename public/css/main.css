@@ -1,0 +1,152 @@
+:root{
+    --blue : #1FA2F1;
+    --lightGrey:  rgb(230, 237, 241)
+}
+
+a{
+    color: inherit;
+}
+
+h1{
+    font-size: 19px;
+    font-weight: 800;
+    margin: 0;
+}
+nav{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    height: 100%;
+}
+
+nav a{   
+        text-decoration: none;
+        padding: 10px;
+        font-size: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 55px;
+        height: 55px;
+}
+
+.mainSectionContainer{
+   padding: 0px;
+   border-left: 1px solid var(--lightGrey);
+   border-right: 1px solid var(--lightGrey);
+   display: flex;
+   flex-direction: column;
+}
+
+
+nav  a.blue{
+    color:  var(--blue);
+}
+
+a:hover{
+     background-color: #d4eddf;
+     border-radius: 50%;
+     color: var(--blue);
+}
+
+.titleContainer{
+    height: 53px;
+    padding: 0px 15px;
+    display: flex;
+    align-items: center; 
+    border-bottom: 1px solid var(--lightGrey);
+    flex-shrink: 0;
+}
+
+.postformContainer{
+           display: flex;
+           padding: 15px;
+           border-bottom: 10px solid rgb(230, 236, 240);
+           flex-shrink: 0;
+}
+
+.userImageContainer{
+    width: 50px;
+    height: 50px;
+
+}
+
+.userImageContainer img{
+    width: 100%;
+    border-radius: 50%;
+   
+}
+
+.textContainer{
+    flex: 1;
+    padding-left:  15px;
+}
+
+.textContainer textarea{
+    width: 100%;
+    border: none;
+    resize: none;
+    font-size: 19px;
+    outline: none;
+
+}
+
+#submitPost{
+    background-color: var(--blue);
+    color: white;
+    border: none;
+    border-radius: 40px;
+    padding: 7px 15px;
+}
+
+#submitPost:disabled{
+    background-color: #9BD1F9;
+}
+
+.post{
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    cursor: pointer;
+    border: 1px solid var(--lightGrey);
+    flex-shrink: 0;
+}
+
+.mainContentContainer{
+      flex: 1;
+      display: flex;
+           
+}
+
+.postContentContainer{
+      padding-left: 15px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+
+}
+
+.userName{
+    color: rgb(101, 119,134);
+}
+
+.displayName{
+    font-weight: bold;
+}
+
+.postFooter{
+    display: flex;
+    align-items: center;
+}
+.postFooter .postButtonContainer{
+    display: flex;
+    flex: 1;
+    justify-content: space-between;
+
+}
+
+.postFooter .postButtonContainer div{
+    padding: 0 5px;
+    color: rgba(0,0,0, 0.34);
+
+}
