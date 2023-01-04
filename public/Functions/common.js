@@ -29,7 +29,6 @@ $("#submitPost").click((event)=>{
   
      $.post("/api/posts", data , (postData)=>{
                let htm = createPost(postData);
-               
                $(".postContainer").prepend(htm)
                text.val("");
                buttonPOst.prop("disabled", true)
@@ -38,6 +37,7 @@ $("#submitPost").click((event)=>{
 
 
 function createPost(postData){
+   console.log(postData)
    let posted = postData.postedBy
    return (`<div class="post">
               <div class="mainContentContainer">

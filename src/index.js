@@ -9,7 +9,7 @@ const connect = require("../config/db");
 const session = require('express-session');
 const logout = require("../Routes/logout");
 const posts = require("../Routes/api/post");
-const Port = process.env.Port || 8000
+const PORT = process.env.PORT || 8000
 
 app.use(express.json());
 
@@ -42,7 +42,7 @@ app.use("/api/posts", posts)
 
 
 
-app.listen(Port, async ()=>{
+app.listen(PORT, async ()=>{
     await connect();
   console.log("started at 8000")
 })

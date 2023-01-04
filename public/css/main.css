@@ -141,12 +141,23 @@ a:hover{
 .postFooter .postButtonContainer{
     display: flex;
     flex: 1;
-    justify-content: space-between;
+    justify-content: space-evenly;
 
 }
 
 .postFooter .postButtonContainer div{
-    padding: 0 5px;
+    padding: 2px 5px;
     color: rgba(0,0,0, 0.34);
 
+}
+
+.header a, 
+.header span{
+    padding-right: 5px;
+}
+
+.postButtonContainer div:hover{
+  background-color: #d4eddf;
+  color: var(--blue);
+  border-radius: 50%;
 }
