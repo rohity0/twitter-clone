@@ -17,8 +17,7 @@ posts.get("/", async (req, res)=>{
 })
 
 posts.post("/", async (req, res)=>{
-        
-       if(!req.body.content){
+         if(!req.body.content){
             console.log("No Data");
         return res.sendStatus(400)
        } 
