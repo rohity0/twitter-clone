@@ -9,8 +9,7 @@ function outputPost(result, container){
       container.html =""; 
           result.forEach(el => {
                    let box = createPost(el);
-                   console.log(box)
-                   container.append(box)
+                    container.append(box)
           });
 
           if(result.length ===0){

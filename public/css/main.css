@@ -148,7 +148,6 @@ a:hover{
 .postFooter .postButtonContainer div{
     padding: 2px 5px;
     color: rgba(0,0,0, 0.34);
-
 }
 
 .header a, 
@@ -160,4 +159,9 @@ a:hover{
   background-color: #d4eddf;
   color: var(--blue);
   border-radius: 50%;
+}
+
+.likeButton i, 
+.likeButton span{
+    pointer-events: none;
 }
