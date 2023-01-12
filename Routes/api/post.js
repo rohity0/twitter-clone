@@ -8,11 +8,18 @@ const posts = express.Router();
 
 posts.get("/", async (req, res)=>{
      try{
-         let data =  await  Posts.find().populate("postedBy").sort({"createdAt": -1})
+         let data =  await  Posts.find().populate("postedBy").populate("retweetData").populate({
+          path: "retweetData",
+          populate:{
+               path: "postedBy"
+          }
+         }).sort({"createdAt": -1});
+                
           // console.log(data)
          res.status(200).send(data)
            
      }catch(e){
+          console.log(e.message)
           res.send(e.message)
      } 
 })
@@ -46,7 +53,7 @@ posts.put("/:id/like", async (req, res)=>{
           let userid = req.session.user._id
           let isLiked =  req.session.user.likes && req.session.user.likes.includes(id)
             
-          let option = isLiked ? "$pull" : "$addToSet" ;
+          let option = isLiked ? "$pull" : "$addToSet";
 
            req.session.user =await users.findByIdAndUpdate(userid, {[option] : {likes: id}} , {new : true})
            .catch(e=>{
@@ -62,6 +69,46 @@ posts.put("/:id/like", async (req, res)=>{
            res.send(
               post
            )
+})
+
+posts.post("/:id/retweet", async (req, res)=>{
+     
+     let id = req.params.id;
+     let userid = req.session.user._id
+     
+     let deletePost = await Posts.findOneAndDelete({postedBy: userid , retweetData: id})
+     .catch(e=>{
+          res.send(e.message)
+     })
+        
+
+     let option = deletePost !==null ? "$pull" : "$addToSet" ;
+     
+     let repost = deletePost;
+
+     if(repost===null){
+          repost = await Posts.create({postedBy: userid, retweetData: id})
+          .catch(e=>{
+                res.send(e.message)
+          })
+       
+     }
+
+
+      req.session.user =await users.findByIdAndUpdate(userid, {[option] : {retweet: repost._id}} , {new : true})
+      .catch(e=>{
+           res.send(e.message)
+      })
+         
+
+     let post =await Posts.findByIdAndUpdate(id, {[option] : {retweet: userid}} , {new : true})
+      .catch(e=>{
+           res.send(e.message)
+      })
+
+      res.send(
+         post
+      )
 })
 
 module.exports = posts

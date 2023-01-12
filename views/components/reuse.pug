@@ -1,8 +1,27 @@
-mixin createpostForm()
+mixin createpostForm(userName)
      .postformContainer 
         .userImageContainer 
-           img(src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png", alt="profilc")
+           img(src=userName.profile, alt="profilc")
         .textContainer 
             textarea#postText(placeholder="What's happening?")
             .buttonCotainer 
                button#submitPost(disabled="") Post
+
+mixin createReplyModal(userName)
+     .modal.fade#replyModal(tabindex='-1',role='dialog', aria-labelledby='replyModalLabel', aria-hidden='false')
+        .modal-dialog(role='document')
+            .modal-content
+               .modal-header
+                  h5#replyModalLabel.modal-title Reply
+                  button.close(type='button', data-dismiss='modal', aria-label='Close')
+                     span(aria-hidden='false') &times;
+               .modal-body
+                  .postformContainer 
+                     .userImageContainer 
+                        img(src=userName.profile, alt="profilc")
+                     .textContainer 
+                           textarea#replyText(placeholder="What's happening?")
+               .modal-footer
+                  button.btn.btn-secondary(type='button', data-dismiss='modal') Close
+                  button#sumbitReplyButton.btn.btn-primary(type='button' disabled="") Reply    
+

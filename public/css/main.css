@@ -165,3 +165,44 @@ a:hover{
 .likeButton span{
     pointer-events: none;
 }
+
+.likeButton.red.active{
+          color: rgb(226, 34 ,94);
+}  
+
+
+.likeButton.red.active:hover{
+    background-color: rgba(226, 34 ,94,0.1);
+}  
+
+.retweet i, 
+.retweet span{
+    pointer-events: none;
+}
+
+.retweet.green.active{
+    color: rgb(5, 175, 5)
+}
+
+.retweet.green:hover{
+    color: rgb(5, 175, 5);
+    background-color: rgba(23,191,99, 0.1);
+    
+
+}
+
+.postAction{
+    padding-left: 55px;
+    font-size: 13px;
+    color: rgb(101, 119,134);
+}
+
+button{
+    border: 0;
+}
+
+.modal .postformContainer{
+    border: none;
+    padding: 0;
+    padding-top: 15px;
+}

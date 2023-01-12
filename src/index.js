@@ -28,11 +28,12 @@ app.use(session({
 
 app.use("/login", login);
 app.use("/register", register);
-app.use("/logout", logout)
+app.use("/logout", logout);
 app.get("/", requireLogin, (req,res)=>{
       var paylaod = {
           title : "Twitter",
-        //   userName : req.session, 
+          userName : req.session.user,
+          userNameJS : JSON.stringify(req.session.user), 
       }
        res.status(200).render("home", paylaod)
 })

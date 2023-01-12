@@ -1,12 +1,14 @@
-$("#postText").keyup((event)=>{
+$("#postText , #replyText").keyup((event)=>{
          let text = $(event.target);
          let value = text.val().trim();
-         let buttonPOst  = $("#submitPost");
+         let isModal = text.parents(".modal").length ==1;
+          
+         let buttonPOst  = isModal ? $("#sumbitReplyButton") : $("#submitPost");
 
          if(buttonPOst.length === 0){
-           
+            alert("no submit found")
             return
-         }
+         } 
 
          if(value ===""){
             buttonPOst.prop("disabled", true)
@@ -35,6 +37,12 @@ $("#submitPost").click((event)=>{
      })
 })
 
+$("#replyModal").on("show.bs.modal", (event)=>{
+   let button = $(event.relatedTarget);
+   let postId = getPostId(button);
+   console.log(postId)
+})
+
 $(document).on("click", ".likeButton", (event)=>{
      let button = $(event.target);
      let postId = getPostId(button);
@@ -43,12 +51,39 @@ $(document).on("click", ".likeButton", (event)=>{
         url: `/api/posts/${postId}/like`,
         type: "PUT",
         success: (postData)=>{
-               button.find("span").text(postData.likes.length || "")
+               button.find("span").text(postData.likes.length || "");
+               if(postData.likes.includes(userLoggedIn._id)){
+                           button.addClass("active")
+               }else{
+                  button.removeClass("active")
+               }
         }
 
      })
 })
+
+
+$(document).on("click", ".retweet", (event)=>{
+   let button = $(event.target);
+   let postId = getPostId(button);
  
+   $.ajax({
+      url: `/api/posts/${postId}/retweet`,
+      type: "POST",
+      success: (postData)=>{
+       
+             button.find("span").text(postData.retweet.length || "");
+             if(postData.retweet.includes(userLoggedIn._id)){
+                         button.addClass("active")
+             }else{
+                button.removeClass("active")
+             }
+      }
+
+   })
+})
+
+
 function getPostId(event){
    let isRoot = event.hasClass("post");
    let rootElement  = isRoot? event : event.closest(".post");
@@ -59,9 +94,27 @@ function getPostId(event){
 
 function createPost(postData){
    
+    if(postData==null) return alert("post obj is null");
+
+    let isRetweet = postData.retweetData !== undefined;
+    
+    let retweetBY  = isRetweet ? postData.postedBy.userName : null
+    postData = isRetweet ? postData.retweetData : postData
+  
+
+    let likelogic = postData.likes.includes(userLoggedIn._id) ? "active" : ""
+    let retweetLogic = postData.retweet.includes(userLoggedIn._id) ? "active" : ""
    let posted = postData.postedBy
    let time = timeDifference(new Date(), new Date(postData.createdAt));
+   
+   let retweetText = "";
+   if(isRetweet){
+               retweetText = `<span> Retweeted by <a href="/profile/${retweetBY}">@${retweetBY}</a></span>`
+   }
+
    return (`<div class="post" data-id='${postData._id}'>
+             <div class="postAction"> ${retweetText}
+             </div>
               <div class="mainContentContainer">
                   <div class="userImageContainer"> 
                    <img src=${posted.profile}>
@@ -78,13 +131,16 @@ function createPost(postData){
                     </div>
                     <div class="postFooter">
                        <div class="postButtonContainer"> 
-                                   <div>
-                                   <i class="fa-regular fa-comment"></i>
-                                   </div>
-                                   <div>
+                                <div>
+                                    <div type="button" data-toggle='modal' data-target='#replyModal' >
+                                       <i class="fa-regular fa-comment"></i>
+                                    </div>
+                                </div>
+                                   <div class= "retweet green ${retweetLogic}">
                                    <i class="fa-solid fa-retweet"></i>
+                                   <span>${postData.retweet.length || ""}</span>
                                    </div>
-                                   <div class="likeButton">
+                                   <div class="likeButton red ${likelogic}">
                                    <i class="fa-regular fa-heart"></i>
                                    <span>${postData.likes.length || ""}</span>
                                    </div>
