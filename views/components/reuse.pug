@@ -16,6 +16,7 @@ mixin createReplyModal(userName)
                   button.close(type='button', data-dismiss='modal', aria-label='Close')
                      span(aria-hidden='false') &times;
                .modal-body
+                  .originalPostContainer
                   .postformContainer 
                      .userImageContainer 
                         img(src=userName.profile, alt="profilc")

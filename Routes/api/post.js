@@ -1,7 +1,7 @@
 const express = require("express");
 const Posts = require("../../Model/Post");
 const users = require("../../Model/userSchema.");
-const { populate } = require("../../Model/userSchema.");
+// const { populate } = require("../../Model/userSchema.");
 
 const posts = express.Router();
 
@@ -22,6 +22,24 @@ posts.get("/", async (req, res)=>{
           console.log(e.message)
           res.send(e.message)
      } 
+})
+
+posts.get("/:id", async (req, res)=>{
+     try{
+             let id = req.params.id
+             let postID = await Posts.findOne({_id:id}).populate("postedBy").populate("retweetData").populate({
+               path: "retweetData",
+               populate:{
+                    path: "postedBy"
+               }
+              }).sort({"createdAt": -1});
+              
+               res.status(200).send(postID)
+
+           
+     }catch(e){{
+          res.send(e.message)
+     }}
 })
 
 posts.post("/", async (req, res)=>{

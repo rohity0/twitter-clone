@@ -40,7 +40,10 @@ $("#submitPost").click((event)=>{
 $("#replyModal").on("show.bs.modal", (event)=>{
    let button = $(event.relatedTarget);
    let postId = getPostId(button);
-   console.log(postId)
+   // console.log(postId)
+   $.get("/api/posts/"+postId,  (result)=>{
+      outputPost(result, $(".originalPostContainer"))
+})
 })
 
 $(document).on("click", ".likeButton", (event)=>{
@@ -82,6 +85,7 @@ $(document).on("click", ".retweet", (event)=>{
 
    })
 })
+
 
 
 function getPostId(event){
@@ -187,4 +191,21 @@ function timeDifference(current, previous) {
    else {
        return Math.round(elapsed/msPerYear ) + ' years ago';   
    }
+}
+
+function outputPost(result, container){
+   container.html("")
+   if(!Array.isArray(result)){
+      result =[result]
+   }
+
+       result.forEach(el => {
+                let box = createPost(el);
+               container.append(box)
+       });
+
+       if(result.length ===0){
+         container.append("<span class='noresult'>Nothing to show </span>");
+     }
+      
 }
