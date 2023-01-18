@@ -2,7 +2,7 @@ $("#postText , #replyText").keyup((event)=>{
          let text = $(event.target);
          let value = text.val().trim();
          let isModal = text.parents(".modal").length ==1;
-          
+           console.log(text.parents(".modal"))
          let buttonPOst  = isModal ? $("#sumbitReplyButton") : $("#submitPost");
 
          if(buttonPOst.length === 0){
@@ -44,6 +44,10 @@ $("#replyModal").on("show.bs.modal", (event)=>{
    $.get("/api/posts/"+postId,  (result)=>{
       outputPost(result, $(".originalPostContainer"))
 })
+})
+
+$("#replyModal").on("hidden.bs.modal", (event)=>{
+   $(".originalPostContainer").html("")
 })
 
 $(document).on("click", ".likeButton", (event)=>{
