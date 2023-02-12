@@ -20,20 +20,28 @@ $("#postText , #replyText").keyup((event)=>{
 
 })
 
-$("#submitPost").click((event)=>{
+$("#submitPost, #sumbitReplyButton").click((event)=>{
     let button = $(event.target);
-    let text = $("#postText");
+  
     let buttonPOst  = $("#submitPost");
+     let ismodal = button.parents(".modal").length = 1;
+     let text =   ismodal ? $('#replyText') : $("#postText");
 
     let data = {
         content  : text.val()
+    }
+    
+    if(ismodal){
+       let id = button.data().id;
+      data.replyTo = id;
+      
     }
   
      $.post("/api/posts", data , (postData)=>{
                let htm = createPost(postData);
                $(".postContainer").prepend(htm)
                text.val("");
-               buttonPOst.prop("disabled", true)
+               button.prop("disabled", true)
      })
 })
 
@@ -41,13 +49,15 @@ $("#replyModal").on("show.bs.modal", (event)=>{
    let button = $(event.relatedTarget);
    let postId = getPostId(button);
    // console.log(postId)
+   $('#sumbitReplyButton').data('id', postId);
+
    $.get("/api/posts/"+postId,  (result)=>{
       outputPost(result, $(".originalPostContainer"))
 })
 })
 
 $("#replyModal").on("hidden.bs.modal", (event)=>{
-   $(".originalPostContainer").html("")
+   $(".originalPostContainer").html("")   
 })
 
 $(document).on("click", ".likeButton", (event)=>{
@@ -119,6 +129,12 @@ function createPost(postData){
    if(isRetweet){
                retweetText = `<span> Retweeted by <a href="/profile/${retweetBY}">@${retweetBY}</a></span>`
    }
+
+   let replyFlag  = "";
+    if(postData.replyTo){
+      
+    }
+   
 
    return (`<div class="post" data-id='${postData._id}'>
              <div class="postAction"> ${retweetText}
