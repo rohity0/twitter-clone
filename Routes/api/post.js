@@ -16,9 +16,14 @@ posts.get("/", async (req, res) => {
           path: "postedBy",
         },
       })
+      .populate({
+        path: "replyTo",
+        populate: {
+          path: "postedBy",
+        },
+      })
       .sort({ createdAt: -1 });
 
-    // console.log(data)
     res.status(200).send(data);
   } catch (e) {
     console.log(e.message);
@@ -29,7 +34,7 @@ posts.get("/", async (req, res) => {
 posts.get("/:id", async (req, res) => {
   try {
     let id = req.params.id;
-    let postID = await Posts.findOne({ _id: id })
+    let postData = await Posts.findOne({ _id: id })
       .populate("postedBy")
       .populate("retweetData")
       .populate({
@@ -37,10 +42,26 @@ posts.get("/:id", async (req, res) => {
         populate: {
           path: "postedBy",
         },
+      }).populate({
+        path: "replyTo",
+        populate: {
+          path: "postedBy",
+        },
       })
       .sort({ createdAt: -1 });
 
-    res.status(200).send(postID);
+
+    let result = {
+      postData: postData,
+    };
+
+    if (postData.replyTo !== undefined) {
+      result.replyTo = postData.replyTo;
+    }
+
+    result.replies = await getPostData({replyTo: id});
+    
+    res.status(200).send(result);
   } catch (e) {
     {
       res.send(e.message);
@@ -48,9 +69,23 @@ posts.get("/:id", async (req, res) => {
   }
 });
 
+
+const getPostData = async (filter)=> {
+     let result = await Posts.find(filter)
+     .populate("postedBy")
+     .populate("retweetData")
+     .populate("replyTo")
+     .sort({ createdAt: -1 })
+     .catch(error=> console.log(error))
+
+      result  = await  users.populate(result, {path: "replyTo.postedBy"});
+    return await users.populate(result, {path:"rerweetData.postedBy"})
+      
+}
+
 posts.post("/", async (req, res) => {
   if (!req.body.content) {
-    //   console.log("No Data");
+   
     return res.sendStatus(400);
   }
   try {
@@ -63,7 +98,10 @@ posts.post("/", async (req, res) => {
     }
 
     if (postData.replyTo) {
-      location.reload();
+      let Data = new Posts(postData);
+      Data = await Data.save();
+      Data = await Data.populate("postedBy");
+      res.status(200).send(Data);
     } else {
       let Data = new Posts(postData);
       Data = await Data.save();

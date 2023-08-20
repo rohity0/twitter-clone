@@ -161,6 +161,10 @@ a:hover{
   border-radius: 50%;
 }
 
+.likeButton{
+background-color: white;
+}
+
 .likeButton i, 
 .likeButton span{
     pointer-events: none;
@@ -174,6 +178,10 @@ a:hover{
 .likeButton.red.active:hover{
     background-color: rgba(226, 34 ,94,0.1);
 }  
+
+.retweet{
+ background-color: white;
+}
 
 .retweet i, 
 .retweet span{
@@ -213,4 +221,21 @@ button{
   border-top: 0;
   border-left: 0;
   border-right: 0;
+}
+.replyFlag{
+    font-size: 13px;
+}
+
+.replyFlag a{
+    font-size: 13px;
+    color: var(--blue);
+}
+
+.replybutton {
+    background-color: white;
+}
+
+.post.largeFont .postBody,
+.post.largeFont .postFooter {
+      font-size: 23px;
 }

@@ -19,7 +19,7 @@ mixin createReplyModal(userName)
                   .originalPostContainer
                   .postformContainer 
                      .userImageContainer 
-                        img(src=userName.profile, alt="profilc")
+                        img(src=userName.profile || "", alt="profilc")
                      .textContainer 
                            textarea#replyText(placeholder="What's happening?")
                .modal-footer
