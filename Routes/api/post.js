@@ -182,4 +182,15 @@ posts.post("/:id/retweet", async (req, res) => {
   res.send(post);
 });
 
+posts.delete("/:id", async (req, res)=> {
+   let id = req.params.id;
+       Posts.findByIdAndDelete(id).then(()=> {
+        res.sendStatus(202)
+       }).catch(e=> {
+        console.log(e)
+        res.sendStatus(400)
+       })
+
+})
+
 module.exports = posts;

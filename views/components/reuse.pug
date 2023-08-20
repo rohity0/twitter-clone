@@ -26,3 +26,20 @@ mixin createReplyModal(userName)
                   button.btn.btn-secondary(type='button', data-dismiss='modal') Close
                   button#sumbitReplyButton.btn.btn-primary(type='button' disabled="") Reply    
 
+mixin createDeletePostModal()
+     .modal.fade#deletePostModal(tabindex='-1',role='dialog', aria-labelledby='deletePostModalLabel', aria-hidden='false')
+        .modal-dialog(role='document')
+            .modal-content
+               .modal-header
+                  h5#deletePostModalLabel.modal-title Delete the post?
+                  button.close(type='button', data-dismiss='modal', aria-label='Close')
+                     span(aria-hidden='false') &times;
+               .modal-body
+                 p You wont't be able to delete this. 
+               .modal-footer
+                  button.btn.btn-secondary(type='button', data-dismiss='modal') Close
+                  button#deletePostButton.btn.btn-primary(type='button') Delete                  
+
+mixin createPostModals(userName)
+     +createReplyModal(userName)
+     +createDeletePostModal()

@@ -61,6 +61,28 @@ $("#replyModal").on("hidden.bs.modal", (event) =>
   $(".originalPostContainer").html("")
 );
 
+
+$("#deletePostModal").on("show.bs.modal", (event) => {
+  let button = $(event.relatedTarget);
+  let postId = getPostId(button);
+
+  $("#deletePostButton").data("id", postId);
+
+});
+  
+$('#deletePostButton').click((event)=> {
+    let id = $(event.target).data("id");
+    console.log(id);
+    $.ajax({
+      url: `/api/posts/${id}`,
+      type: "DELETE",
+      success: () => {
+          location.reload();
+      },
+    });
+})
+
+
 $(document).on("click", ".likeButton", (event) => {
   let button = $(event.target);
   let postId = getPostId(button);
@@ -100,10 +122,7 @@ $(document).on("click", ".retweet", (event) => {
 $(document).on("click", ".post", (event) => {
   let element = $(event.target);
   let postId = getPostId(element);
-  
-
-
-  if (postId !== undefined && !element.is("button")) {
+  if (postId !== undefined && !element.is("button") && !element.is("i")) {
     window.location.href = "/posts/" + postId;
   }
 });
@@ -116,7 +135,6 @@ function getPostId(event) {
 }
 
 function createPost(postData, largeFont = false) {
-   
   if (postData == null) return alert("post obj is null");
 
   let isRetweet = postData.retweetData !== undefined;
@@ -130,7 +148,7 @@ function createPost(postData, largeFont = false) {
     : "";
   let posted = postData.postedBy;
   let time = timeDifference(new Date(), new Date(postData.createdAt));
- let largeFontClass = largeFont ? "largeFont" : ""
+  let largeFontClass = largeFont ? "largeFont" : "";
   let retweetText = "";
   if (isRetweet) {
     retweetText = `<span> Retweeted by <a href="/profile/${retweetBY}">@${retweetBY}</a></span>`;
@@ -151,6 +169,12 @@ function createPost(postData, largeFont = false) {
         </div>`;
   }
 
+  let buttons = "";
+  if (postData.postedBy._id == userLoggedIn._id) {
+    buttons = `<button data-id='${postData._id}' class ="deleteButton"  data-toggle= "modal" data-target="#deletePostModal"> 
+                  <i class ='fas fa-times'> </i>  </button>`;
+  }
+
   return `<div class='post ${largeFontClass}' data-id='${postData._id}'>
              <div class="postAction"> ${retweetText}
              </div>
@@ -164,8 +188,8 @@ function createPost(postData, largeFont = false) {
     posted.firstName
   } ${posted.lastName}</a>
                      <span class="userName">@${posted.userName}</span>
-                     <span class="userName">${time}</span>
-
+                     <span class="date">${time}</span>
+                     ${buttons}
                      </div>
                      ${replyFlag}
                     <div class="postBody">
@@ -173,11 +197,11 @@ function createPost(postData, largeFont = false) {
                     </div>
                     <div class="postFooter">
                        <div class="postButtonContainer"> 
-                                <button class= "replybutton">
-                                    <button class= "replybutton" type="button" data-toggle='modal' data-target='#replyModal' >
-                                       <i class="fa-regular fa-comment"></i>
+                                
+                                    <button class= "replybutton" data-toggle='modal' data-target='#replyModal' >
+                                     <i class="fa-regular fa-comment"></i> 
                                     </button>
-                                </button>
+                            
                                    <button class= "retweet green ${retweetLogic}">
                                    <i class="fa-solid fa-retweet"></i>
                                    <span>${postData.retweet.length || ""}</span>
@@ -235,22 +259,18 @@ function outputPost(result, container) {
   }
 }
 
-
 function outputPostwithReplies(result, container) {
   container.html("");
 
-  if(result.replyTo !== undefined && result.replyTo._id !== undefined){
+  if (result.replyTo !== undefined && result.replyTo._id !== undefined) {
     let box = createPost(result.replyTo, false);
     container.append(box);
   }
   let mainPostHTml = createPost(result.postData, true);
   container.append(mainPostHTml);
-  
 
   result.replies.forEach((el) => {
     let box = createPost(el);
     container.append(box);
   });
-
- 
 }
