@@ -9,8 +9,9 @@ const connect = require("../config/db");
 const session = require("express-session");
 const logout = require("../Routes/logout");
 const posts = require("../Routes/api/post");
-const postPage = require("../Routes/postRoutes");
 const postRoutes = require("../Routes/postRoutes");
+const profileRoutes = require("../Routes/pofileRoutes");
+
 const PORT = process.env.PORT || 8000;
 
 app.use(express.json());
@@ -32,6 +33,8 @@ app.use("/login", login);
 app.use("/register", register);
 app.use("/logout", logout);
 app.use("/posts", requireLogin, postRoutes);
+app.use("/profile", requireLogin, profileRoutes);
+
 
 app.get("/", requireLogin, (req, res) => {
   var paylaod = {

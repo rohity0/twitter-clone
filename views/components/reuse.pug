@@ -35,7 +35,7 @@ mixin createDeletePostModal()
                   button.close(type='button', data-dismiss='modal', aria-label='Close')
                      span(aria-hidden='false') &times;
                .modal-body
-                 p You wont't be able to delete this. 
+                 .originalPostContainer 
                .modal-footer
                   button.btn.btn-secondary(type='button', data-dismiss='modal') Close
                   button#deletePostButton.btn.btn-primary(type='button') Delete                  
@@ -43,3 +43,8 @@ mixin createDeletePostModal()
 mixin createPostModals(userName)
      +createReplyModal(userName)
      +createDeletePostModal()
+
+mixin createFollowButton(user, isFollowing)
+         - text = isFollowing ? "Following" : "Follow"
+         - buttonClass = isFollowing? "followButton following" : "follow"
+         button(class = buttonClass, data-user = user._id) #{text}
