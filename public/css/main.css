@@ -296,3 +296,33 @@ button{
 .followButton:hover{
     background-color: var(--blueBackGround);
 }
+
+.followButton.following {
+    background-color:  var(--blue);
+    color: #fff;
+}
+
+.profileHeaderContainer .userDetailsContainer{
+    display: flex;
+    flex-direction: column;
+    padding: 0 15px;
+}
+
+.followersContainer .value {
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+.followersContainer span:not(.value) {
+    color: rgb(101, 119,134);
+}
+
+.followersContainer a{
+    margin-right: 15px;
+    text-decoration: none;
+}
+
+.followersContainer a:hover{
+    border-bottom: 1px solid #000;
+    background-color: none
+}
