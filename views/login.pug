@@ -3,6 +3,7 @@ extends layouts/login-layout.pug
 block content 
   .loginContainer 
     h1 Login
+    
     form#login(method="post" onSubmit="event.preventDefault(); validate()")
            p.errorM #{errorM}
            input(type="text", name="loginUser", placeholder="User Name or Email", value= "r@g.com", required="") 
@@ -18,4 +19,3 @@ block content
               form.submit();
       }
 
-  
