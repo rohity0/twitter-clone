@@ -46,7 +46,7 @@ nav  a.blue{
 
 a:hover{
      background-color: #d4eddf;
-     border-radius: 50%;
+     border-radius: 30%;
      color: var(--blue);
 }
 
@@ -325,4 +325,36 @@ button{
 .followersContainer a:hover{
     border-bottom: 1px solid #000;
     background-color: none
+}
+
+.tabConatiner {
+    display: flex;
+    border-bottom: 1px solid rgb(101, 119,134);
+    flex-shrink: 0;
+    
+}
+
+.tabConatiner  a{
+    text-decoration: none;
+}
+
+.tab{
+   flex: 1;
+   height: 52px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   color: rgb(101, 119,134);
+   font-weight: bold;
+}
+
+.tab.active{
+    color: var(--blue);
+    border-bottom: 2px solid var(--blue);
+}
+
+.tab:hover{
+    color: var(--blue);
+    background-color: var(--blueBackGround);
+    border-radius: 0%;
 }

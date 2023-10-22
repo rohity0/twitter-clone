@@ -13,9 +13,10 @@ login.get("/", (req, res)=>{
 
 login.post("/", async (req, res)=>{
     let payload  =  req.body
-   
       if(req.body.loginUser && req.body.logPassword){
                     try{
+
+                        console.log("reached");
                         let newData = await users.findOne({$or : [{email:payload.loginUser}, {userName:payload.loginUser}]});
                       
                         if(newData){

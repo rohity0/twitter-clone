@@ -19,6 +19,12 @@ profileRoutes.get("/:username", async (req, res, next) => {
   res.status(200).render("profilePage", paylaod);
 });
 
+profileRoutes.get("/:username/replies", async (req, res, next) => {
+  var paylaod = await getPayload(req.params.username, req.session.user);
+  paylaod.selectedTab = "replies"
+  res.status(200).render("profilePage", paylaod);
+});
+
 async function getPayload(userName, userLoggedIn) {
   let user = await users.findOne({ userName: userName });
   if (user == null) {
