@@ -5,8 +5,8 @@ block content
     h1 Login 
     form#login(method="post" onSubmit="event.preventDefault(); validate()")
            p.errorM #{errorM}
-           input(type="text", name="loginUser", placeholder="User Name or Email", value= "r@g.com", required="") 
-           input(type="password", name="logPassword", placeholder="Password", value ="123" required="")
+           input(type="text", name="loginUser", placeholder="User Name or Email", value= loginUser, required="") 
+           input(type="password", name="logPassword", placeholder="Password", required="")
            input(type="submit" , value="login")
     a(href="/register") Need an account ? Register here  
 

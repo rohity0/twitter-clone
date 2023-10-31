@@ -40,14 +40,24 @@ nav a{
 }
 
 
-nav  a.blue{
+nav a.blue{
     color:  var(--blue);
 }
 
-a:hover{
+nav a:hover{
      background-color: #d4eddf;
      border-radius: 30%;
      color: var(--blue);
+}
+
+.wrapper > .row{
+    margin: 0
+}
+
+a:hover{
+    background-color: #d4eddf;
+    border-radius: 30%;
+    color: var(--blue);
 }
 
 .titleContainer{

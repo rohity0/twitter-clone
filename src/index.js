@@ -11,6 +11,8 @@ const logout = require("../Routes/logout");
 const posts = require("../Routes/api/post");
 const postRoutes = require("../Routes/postRoutes");
 const profileRoutes = require("../Routes/pofileRoutes");
+const users = require("../Routes/api/users");
+
 
 const PORT = process.env.PORT || 8000;
 
@@ -47,6 +49,8 @@ app.get("/", requireLogin, (req, res) => {
 
 // api
 app.use("/api/posts", posts);
+app.use("/api/users", users);
+
 
 app.listen(PORT, async () => {
   await connect();

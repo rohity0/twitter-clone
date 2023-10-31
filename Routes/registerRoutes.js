@@ -2,14 +2,13 @@ const express = require("express");
 const app = express();
 const register  = express.Router();
 const bodyParser  = require("body-parser");
-const users = require("../Model/userSchema.");
+const users = require("../Model/userSchema");
 const  brcypt = require("bcrypt");
 app.set("view engine", "pug");
 app.set("views", "views");
 // app.use(bodyParser.urlencoded({extended: false}));
 
 register.get("/", (req, res)=>{
-    //  console.log(req.body)
     res.status(200).render("register")
 })
 
