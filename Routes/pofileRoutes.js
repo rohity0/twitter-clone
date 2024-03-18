@@ -1,5 +1,5 @@
 const express = require("express");
-const users = require("../Model/userSchema.");
+const users = require("../Model/userSchema");
 const app = express();
 const profileRoutes = express.Router();
 const bcrypt = require("bcrypt");

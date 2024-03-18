@@ -1,360 +1,399 @@
-:root{
-    --blue : #1FA2F1;
-    --lightGrey:  rgb(230, 237, 241);
-    --blueBackGround :rgba(212 ,237, 255, 0.6);
+:root {
+  --blue: #1fa2f1;
+  --lightGrey: rgb(230, 237, 241);
+  --blueBackGround: rgba(212, 237, 255, 0.6);
 }
 
-a{
-    color: inherit;
+a {
+  color: inherit;
 }
 
-h1{
-    font-size: 19px;
-    font-weight: 800;
-    margin: 0;
+h1 {
+  font-size: 19px;
+  font-weight: 800;
+  margin: 0;
 }
-nav{
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    height: 100%;
-}
-
-nav a{   
-        text-decoration: none;
-        padding: 10px;
-        font-size: 30px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 55px;
-        height: 55px;
+nav {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  height: 100%;
 }
 
-.mainSectionContainer{
-   padding: 0px;
-   border-left: 1px solid var(--lightGrey);
-   border-right: 1px solid var(--lightGrey);
-   display: flex;
-   flex-direction: column;
+nav a {
+  text-decoration: none;
+  padding: 10px;
+  font-size: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 55px;
+  height: 55px;
 }
 
-
-nav  a.blue{
-    color:  var(--blue);
+.mainSectionContainer {
+  padding: 0px;
+  border-left: 1px solid var(--lightGrey);
+  border-right: 1px solid var(--lightGrey);
+  display: flex;
+  flex-direction: column;
 }
 
-a:hover{
-     background-color: #d4eddf;
-     border-radius: 30%;
-     color: var(--blue);
+nav a.blue {
+  color: var(--blue);
 }
 
-.titleContainer{
-    height: 53px;
-    padding: 0px 15px;
-    display: flex;
-    align-items: center; 
-    border-bottom: 1px solid var(--lightGrey);
-    flex-shrink: 0;
+nav a:hover {
+  background-color: #d4eddf;
+  border-radius: 30%;
+  color: var(--blue);
 }
 
-.postformContainer{
-           display: flex;
-           padding: 15px;
-           border-bottom: 10px solid rgb(230, 236, 240);
-           flex-shrink: 0;
+.wrapper > .row {
+  margin: 0;
 }
 
-.userImageContainer{
-    width: 50px;
-    height: 50px;
-
+a:hover {
+  background-color: #d4eddf;
+  border-radius: 30%;
+  color: var(--blue);
 }
 
-.userImageContainer img{
-    width: 100%;
-    border-radius: 50%;
-   
+.titleContainer {
+  height: 53px;
+  padding: 0px 15px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid var(--lightGrey);
+  flex-shrink: 0;
 }
 
-.textContainer{
-    flex: 1;
-    padding-left:  15px;
+.postformContainer {
+  display: flex;
+  padding: 15px;
+  border-bottom: 10px solid rgb(230, 236, 240);
+  flex-shrink: 0;
 }
 
-.textContainer textarea{
-    width: 100%;
-    border: none;
-    resize: none;
-    font-size: 19px;
-    outline: none;
-
+.userImageContainer {
+  width: 50px;
+  height: 50px;
 }
 
-#submitPost{
-    background-color: var(--blue);
-    color: white;
-    border: none;
-    border-radius: 40px;
-    padding: 7px 15px;
+.userImageContainer img {
+  width: 100%;
+  border-radius: 50%;
 }
 
-#submitPost:disabled{
-    background-color: #9BD1F9;
+.textContainer {
+  flex: 1;
+  padding-left: 15px;
 }
 
-.post{
-    display: flex;
-    flex-direction: column;
-    padding: 15px;
-    cursor: pointer;
-    border: 1px solid var(--lightGrey);
-    flex-shrink: 0;
+.textContainer textarea {
+  width: 100%;
+  border: none;
+  resize: none;
+  font-size: 19px;
+  outline: none;
 }
 
-.mainContentContainer{
-      flex: 1;
-      display: flex;
-           
+#submitPost {
+  background-color: var(--blue);
+  color: white;
+  border: none;
+  border-radius: 40px;
+  padding: 7px 15px;
 }
 
-.postContentContainer{
-      padding-left: 15px;
-      display: flex;
-      flex-direction: column;
-      flex: 1;
-
+#submitPost:disabled {
+  background-color: #9bd1f9;
 }
 
-.userName{
-    color: rgb(101, 119,134);
+.post {
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  cursor: pointer;
+  border: 1px solid var(--lightGrey);
+  flex-shrink: 0;
 }
 
-.displayName{
-    font-weight: bold;
+.mainContentContainer {
+  flex: 1;
+  display: flex;
 }
 
-.postFooter{
-    display: flex;
-    align-items: center;
-}
-.postFooter .postButtonContainer{
-    display: flex;
-    flex: 1;
-    justify-content: space-evenly;
-
+.postContentContainer {
+  padding-left: 15px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }
 
-.postFooter .postButtonContainer div{
-    padding: 2px 5px;
-    color: rgba(0,0,0, 0.34);
+.userName {
+  color: rgb(101, 119, 134);
 }
 
-.header a, 
-.header span{
-    padding-right: 5px;
+.displayName {
+  font-weight: bold;
 }
 
-.postButtonContainer div:hover{
+.postFooter {
+  display: flex;
+  align-items: center;
+}
+.postFooter .postButtonContainer {
+  display: flex;
+  flex: 1;
+  justify-content: space-evenly;
+}
+
+.postFooter .postButtonContainer div {
+  padding: 2px 5px;
+  color: rgba(0, 0, 0, 0.34);
+}
+
+.header a,
+.header span {
+  padding-right: 5px;
+}
+
+.postButtonContainer div:hover {
   background-color: #d4eddf;
   color: var(--blue);
   border-radius: 50%;
 }
 
-.likeButton{
-background-color: white;
+.likeButton {
+  background-color: white;
 }
 
-.likeButton i, 
-.likeButton span{
-    pointer-events: none;
+.likeButton i,
+.likeButton span {
+  pointer-events: none;
 }
 
-.likeButton.red.active{
-          color: rgb(226, 34 ,94);
-}  
-
-
-.likeButton.red.active:hover{
-    background-color: rgba(226, 34 ,94,0.1);
-}  
-
-.retweet{
- background-color: white;
+.likeButton.red.active {
+  color: rgb(226, 34, 94);
 }
 
-.retweet i, 
-.retweet span{
-    pointer-events: none;
+.likeButton.red.active:hover {
+  background-color: rgba(226, 34, 94, 0.1);
 }
 
-.retweet.green.active{
-    color: rgb(5, 175, 5)
+.retweet {
+  background-color: white;
 }
 
-.retweet.green:hover{
-    color: rgb(5, 175, 5);
-    background-color: rgba(23,191,99, 0.1);
-    
-
+.retweet i,
+.retweet span {
+  pointer-events: none;
 }
 
-.postAction{
-    padding-left: 55px;
-    font-size: 13px;
-    color: rgb(101, 119,134);
+.retweet.green.active {
+  color: rgb(5, 175, 5);
 }
 
-button{
-    border: 0;
+.retweet.green:hover {
+  color: rgb(5, 175, 5);
+  background-color: rgba(23, 191, 99, 0.1);
 }
 
-.modal .postformContainer{
-    border: none;
-    padding: 0;
-    padding-top: 15px;
+.postAction {
+  padding-left: 55px;
+  font-size: 13px;
+  color: rgb(101, 119, 134);
 }
 
+button {
+  border: 0;
+}
 
-.modal .post{
- padding: 0 0 15px 0;
+.modal .postformContainer {
+  border: none;
+  padding: 0;
+  padding-top: 15px;
+}
+
+.modal .post {
+  padding: 0 0 15px 0;
   border-top: 0;
   border-left: 0;
   border-right: 0;
 }
-.replyFlag{
-    font-size: 13px;
+.replyFlag {
+  font-size: 13px;
 }
 
-.replyFlag a{
-    font-size: 13px;
-    color: var(--blue);
+.replyFlag a {
+  font-size: 13px;
+  color: var(--blue);
 }
 
 .replybutton {
-    background-color: white;
+  background-color: white;
 }
 
 .post.largeFont .postBody,
 .post.largeFont .postFooter {
-      font-size: 23px;
+  font-size: 23px;
 }
 
 .postContentContainer .header {
-    display: flex
+  display: flex;
 }
- .postContentContainer .header .date {
-    flex :1
+.postContentContainer .header .date {
+  flex: 1;
 }
 
-.deleteButton{
-    background-color: white;
+.deleteButton {
+  background-color: white;
 }
 
 .errorMessage {
-    padding: 15px;
+  padding: 15px;
 }
 
-.profileHeaderContainer .coverPhotoContainer{
-    height: 180px;
-    background-color: var(--blue);
-    position: relative;
+.profileHeaderContainer .coverPhotoContainer {
+  height: 180px;
+  background-color: var(--blue);
+  position: relative;
 }
 
 .profileHeaderContainer .userImageContainer {
-    height:  132px;
-    width: 132px;
-    margin-left: 15px;
-    position: absolute;
-    bottom:-66px;
+  height: 132px;
+  width: 132px;
+  margin-left: 15px;
+  position: absolute;
+  bottom: -66px;
 
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.profileHeaderContainer .userImageContainer  img{
-    border: 4px solid #fff;
+.profileHeaderContainer .userImageContainer img {
+  border: 4px solid #fff;
 }
 
 .profileHeaderContainer .profileButtonContainer {
-    text-align: right;
-    padding: 15px;
-    min-width: 66px;
+  text-align: right;
+  padding: 15px;
+  min-width: 66px;
 }
 
 .profileButton,
 .followButton,
-.follow{
-    border: 1px solid var(--blue);
-    color: var(--blue);
-    padding: 5px 15px;
-    border-radius: 60px;
-    display: inline-block;
-    margin-left: 15px;
+.follow {
+  border: 1px solid var(--blue);
+  color: var(--blue);
+  padding: 5px 15px;
+  border-radius: 60px;
+  display: inline-block;
+  margin-left: 15px;
 }
 
 .profileButton:hover,
-.followButton:hover{
-    background-color: var(--blueBackGround);
+.followButton:hover {
+  background-color: var(--blueBackGround);
 }
 
 .followButton.following {
-    background-color:  var(--blue);
-    color: #fff;
+  background-color: var(--blue);
+  color: #fff;
 }
 
-.profileHeaderContainer .userDetailsContainer{
-    display: flex;
-    flex-direction: column;
-    padding: 0 15px;
+.profileHeaderContainer .userDetailsContainer {
+  display: flex;
+  flex-direction: column;
+  padding: 0 15px;
 }
 
 .followersContainer .value {
-    font-weight: bold;
-    margin-right: 5px;
+  font-weight: bold;
+  margin-right: 5px;
 }
 
 .followersContainer span:not(.value) {
-    color: rgb(101, 119,134);
+  color: rgb(101, 119, 134);
 }
 
-.followersContainer a{
-    margin-right: 15px;
-    text-decoration: none;
+.followersContainer a {
+  margin-right: 15px;
+  text-decoration: none;
 }
 
-.followersContainer a:hover{
-    border-bottom: 1px solid #000;
-    background-color: none
+.followersContainer a:hover {
+  border-bottom: 1px solid #000;
+  background-color: none;
 }
 
 .tabConatiner {
-    display: flex;
-    border-bottom: 1px solid rgb(101, 119,134);
-    flex-shrink: 0;
-    
+  display: flex;
+  border-bottom: 1px solid rgb(101, 119, 134);
+  flex-shrink: 0;
 }
 
-.tabConatiner  a{
-    text-decoration: none;
+.tabConatiner a {
+  text-decoration: none;
 }
 
-.tab{
-   flex: 1;
-   height: 52px;
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   color: rgb(101, 119,134);
-   font-weight: bold;
+.tab {
+  flex: 1;
+  height: 52px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgb(101, 119, 134);
+  font-weight: bold;
 }
 
-.tab.active{
-    color: var(--blue);
-    border-bottom: 2px solid var(--blue);
+.tab.active {
+  color: var(--blue);
+  border-bottom: 2px solid var(--blue);
 }
 
-.tab:hover{
-    color: var(--blue);
-    background-color: var(--blueBackGround);
-    border-radius: 0%;
+.tab:hover {
+  color: var(--blue);
+  background-color: var(--blueBackGround);
+  border-radius: 0%;
+}
+
+.noResults {
+  padding: 15px;
+}
+
+.resultContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.resultContainer .user {
+  padding: 10px;
+  display: flex;
+  border-bottom: 1px solid var(--lightGrey);
+}
+
+.user .userDetailsContainer {
+  flex: 1;
+  padding: 0 15px;
+}
+
+.profilePictureButton {
+  position: absolute;
+  font-size: 50px;
+  color: rgba(0, 0, 0, 0.6);
+  background-color: transparent;
+  display: none;
+}
+
+.userImageContainer:hover .profilePictureButton {
+  display: block;
+}
+
+#imagePreview {
+  width: 100%;
+  display: block;
+  max-width: 100%;
 }

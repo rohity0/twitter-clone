@@ -1,5 +1,5 @@
 const express = require("express");
-const users = require("../Model/userSchema.");
+const users = require("../Model/userSchema");
 const app = express();
 const login  = express.Router();
 const bcrypt = require("bcrypt");
@@ -13,7 +13,6 @@ login.get("/", (req, res)=>{
 
 login.post("/", async (req, res)=>{
     let payload  =  req.body
-   
       if(req.body.loginUser && req.body.logPassword){
                     try{
 

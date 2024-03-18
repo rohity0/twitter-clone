@@ -1,43 +1,54 @@
 extends layouts/main-layout.pug
 
 block content 
-  if !profileUser
-       span.errorMessage User not found
-  else 
+   if !profileUser
+      span.errorMessage User not found
+   else 
       script. 
-            let profileUserId = '!{profileUser._id}' 
-            let selectedTab = '!{selectedTab}'    
+         let profileUserId = '!{profileUser._id}' 
+         let selectedTab = '!{selectedTab}'    
 
-            
+      -followerCount = profileUser.followers.length 
+      -followingCount = profileUser.following.length 
+
       .profileHeaderContainer 
          .coverPhotoContainer
 
-             .userImageContainer
-                     img(src = profileUser.profile, alt = "user profile")
+            .userImageContainer
+               img(src = profileUser.profile, alt = "user profile")
+               if profileUser._id == userName._id
+                button.profilePictureButton(data-toggle="modal" data-target="#imageUploadModal")
+                   i.fas.fa-camera
          .profileButtonContainer 
             if profileUser._id !== userName._id
-                  a.profileButton(href = `/message/${profileUser._id}`)
-                     i.fas.fa-envelope
-                  +createFollowButton(profileUser, false) 
+               a.profileButton(href = `/message/${profileUser._id}`)
+                  i.fas.fa-envelope
+            - let profileUserId = profileUser._id.toString();
+            - if (userName.following &&  userName.following.includes(profileUserId))
+               +createFollowButton(profileUser, true)
+            - else 
+               +createFollowButton(profileUser, false)
+
          .userDetailsContainer
             span.diplayName #{profileUser.firstName} #{profileUser.lastName}  
             span.userName @#{profileUser.userName}
 
             .followersContainer
                a(href=`/profile/${profileUser.userName}/following`)
-                    span.value #{0}
-                    span following
+                  span.value #{followingCount}
+                  span following
                a(href=`/profile/${profileUser.userName}/followers`)
-                    span.value #{0}
-                    span Followers            
+                  span#followerValue.value #{followerCount}
+                  span Followers            
       .tabConatiner 
          +createTab("Post", `/profile/${profileUser.userName}`, selectedTab !== "replies")
          +createTab("Replies", `/profile/${profileUser.userName}/replies`, selectedTab == "replies")
-         
 
 
-  .postContainer
-  +createPostModals(userName)
+
+   .postContainer
+   +createPostModals(userName)
+   +createImageUploadModal()
 
 block script 
-      script(src="/Functions/profile.js") 
+   script(src="/Functions/profile.js") 
