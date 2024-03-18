@@ -14,6 +14,7 @@ const profileRoutes = require("../Routes/pofileRoutes");
 const users = require("../Routes/api/users");
 const uploadImages = require("../Routes/uploadRoutes");
 
+
 const PORT = process.env.PORT || 8000;
 
 app.use(express.json());
@@ -50,6 +51,7 @@ app.get("/", requireLogin, (req, res) => {
 // api
 app.use("/api/posts", posts);
 app.use("/api/users", users);
+
 
 app.listen(PORT, async () => {
   await connect();

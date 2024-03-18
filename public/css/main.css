@@ -39,18 +39,34 @@ nav a {
   flex-direction: column;
 }
 
-nav a.blue {
-  color: var(--blue);
+
+nav a.blue{
+    color:  var(--blue);
 }
 
-nav a:hover {
-  background-color: #d4eddf;
-  border-radius: 30%;
-  color: var(--blue);
+nav a:hover{
+     background-color: #d4eddf;
+     border-radius: 30%;
+     color: var(--blue);
 }
 
-.wrapper > .row {
-  margin: 0;
+.wrapper > .row{
+    margin: 0
+}
+
+a:hover{
+    background-color: #d4eddf;
+    border-radius: 30%;
+    color: var(--blue);
+}
+
+.titleContainer{
+    height: 53px;
+    padding: 0px 15px;
+    display: flex;
+    align-items: center; 
+    border-bottom: 1px solid var(--lightGrey);
+    flex-shrink: 0;
 }
 
 a:hover {

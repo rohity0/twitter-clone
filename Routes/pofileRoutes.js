@@ -21,8 +21,21 @@ profileRoutes.get("/:username", async (req, res, next) => {
 
 profileRoutes.get("/:username/replies", async (req, res, next) => {
   var paylaod = await getPayload(req.params.username, req.session.user);
-  paylaod.selectedTab = "replies"
+  paylaod.selectedTab = "replies";
   res.status(200).render("profilePage", paylaod);
+});
+
+
+profileRoutes.get("/:username/following", async (req, res, next) => {
+  var paylaod = await getPayload(req.params.username, req.session.user);
+  paylaod.selectedTab = "following";
+  res.status(200).render("followersAndFollowing", paylaod);
+});
+
+profileRoutes.get("/:username/followers", async (req, res, next) => {
+  var paylaod = await getPayload(req.params.username, req.session.user);
+  paylaod.selectedTab = "followers";
+  res.status(200).render("followersAndFollowing", paylaod);
 });
 
 async function getPayload(userName, userLoggedIn) {

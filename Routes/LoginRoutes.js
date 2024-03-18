@@ -16,7 +16,7 @@ login.post("/", async (req, res)=>{
       if(req.body.loginUser && req.body.logPassword){
                     try{
 
-                        console.log("reached");
+                        
                         let newData = await users.findOne({$or : [{email:payload.loginUser}, {userName:payload.loginUser}]});
                       
                         if(newData){

@@ -54,16 +54,6 @@ users.get("/:userId/followers", (req, res) => {
   });
 });
 
-users.get("/:userId/followers", (req, res) => {
-  User.findById(req.params.userId)
-    .populate("followers")
-    .then((result) => {
-      res.status(200).send(result);
-    })
-    .catch((error) => {
-      res.send(400);
-    });
-});
 
 users.post(
   "/profilePicture",
@@ -89,5 +79,6 @@ users.post(
     });
   }
 );
+
 
 module.exports = users;
