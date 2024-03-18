@@ -13,10 +13,17 @@ posts.get("/", async (req, res) => {
       searchObject.replyTo = { $exists: isReply };
       delete searchObject.isReply;
     }
-
+    if (searchObject.followingOnly !== undefined) {
+      let followingOnly = searchObject.followingOnly == "true";
+      if (followingOnly) {
+        let objectIds = req.session.user.following;
+        objectIds.push(req.session.user._id);
+        searchObject.postedBy = { $in: objectIds };
+      }
+      delete searchObject.followingOnly;
+    }
     let data = await getPostData(searchObject);
     res.status(200).send(data);
-    
   } catch (e) {
     console.log(e.message);
     res.send(e.message);
@@ -42,7 +49,6 @@ posts.get("/:id", async (req, res) => {
         },
       })
       .sort({ createdAt: -1 });
-
 
     let result = {
       postData: postData,

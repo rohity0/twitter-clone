@@ -53,4 +53,20 @@ mixin createTab(name , href ,isSelected)
           -clasName = isSelected ?"tab active" : "tab"
           a(href = href, class= clasName)
              span #{name}
+
+mixin createImageUploadModal()
+     .modal.fade#imageUploadModal(tabindex='-1',role='dialog', aria-labelledby='imageUploadModalLabel', aria-hidden='false')
+        .modal-dialog(role='document')
+            .modal-content
+               .modal-header
+                  h5#imageUploadModalLabel.modal-title Upload a new profile picture.
+                  button.close(type='button', data-dismiss='modal', aria-label='Close')
+                     span(aria-hidden='false') &times;
+               .modal-body
+                 input#filePhoto(type="file", name="filePhoto")
+                 .imagePreviewContainer
+                  img#imagePreview(src="", alt="") 
+               .modal-footer
+                  button.btn.btn-secondary(type='button', data-dismiss='modal') Cancel
+                  button#imageUploadButton.btn.btn-primary(type='button') Save             
                
