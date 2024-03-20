@@ -69,4 +69,19 @@ mixin createImageUploadModal()
                .modal-footer
                   button.btn.btn-secondary(type='button', data-dismiss='modal') Cancel
                   button#imageUploadButton.btn.btn-primary(type='button') Save             
-               
+
+mixin createCoverPhotoUploadModal()
+     .modal.fade#coverPhotoUploadModal(tabindex='-1',role='dialog', aria-labelledby='coverPhotoModalLabel', aria-hidden='false')
+        .modal-dialog(role='document')
+            .modal-content
+               .modal-header
+                  h5#coverPhotoUploadModalLabel.modal-title Upload a new cover photo
+                  button.close(type='button', data-dismiss='modal', aria-label='Close')
+                     span(aria-hidden='false') &times;
+               .modal-body
+                 input#coverPhoto(type="file", name="filePhoto")
+                 .imagePreviewContainer
+                  img#coverPreview(src="", alt="") 
+               .modal-footer
+                  button.btn.btn-secondary(type='button', data-dismiss='modal') Cancel
+                  button#coverPhotoButton.btn.btn-primary(type='button') Save               

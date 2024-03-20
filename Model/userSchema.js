@@ -12,6 +12,9 @@ const userSchema = new monooge.Schema(
       default:
         "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png",
     },
+    coverPhoto: {
+      type: String,
+    },
     likes: [{ type: monooge.Schema.Types.ObjectId, ref: "post" }],
     retweet: [{ type: monooge.Schema.Types.ObjectId, ref: "post" }],
     following: [{ type: monooge.Schema.Types.ObjectId, ref: "user" }],
