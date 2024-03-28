@@ -190,4 +190,25 @@ posts.delete("/:id", async (req, res) => {
     });
 });
 
+posts.put("/:id", async (req, res) => {
+  if (req.body.pinned !== undefined) {
+    await Posts.updateMany(
+      { postedBy: req.session.user._id },
+      { pinned: false }
+    ).catch((err) => {
+      console.log(err);
+      res.sendStatus(400);
+    });
+  }
+
+  Posts.findByIdAndUpdate(req.params.id, req.body)
+    .then(() => {
+      res.sendStatus(202);
+    })
+    .catch((e) => {
+      console.log(e);
+      res.sendStatus(400);
+    });
+});
+
 module.exports = posts;
