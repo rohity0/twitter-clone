@@ -43,6 +43,8 @@ mixin createDeletePostModal()
 mixin createPostModals(userName)
      +createReplyModal(userName)
      +createDeletePostModal()
+     +createPinnedPostModal()
+     +createUnPinPostModal()
 
 mixin createFollowButton(user, isFollowing)
          - text = isFollowing ? "Following" : "Follow"
@@ -69,4 +71,48 @@ mixin createImageUploadModal()
                .modal-footer
                   button.btn.btn-secondary(type='button', data-dismiss='modal') Cancel
                   button#imageUploadButton.btn.btn-primary(type='button') Save             
-               
+
+mixin createCoverPhotoUploadModal()
+     .modal.fade#coverPhotoUploadModal(tabindex='-1',role='dialog', aria-labelledby='coverPhotoModalLabel', aria-hidden='false')
+        .modal-dialog(role='document')
+            .modal-content
+               .modal-header
+                  h5#coverPhotoUploadModalLabel.modal-title Upload a new cover photo
+                  button.close(type='button', data-dismiss='modal', aria-label='Close')
+                     span(aria-hidden='false') &times;
+               .modal-body
+                 input#coverPhoto(type="file", name="filePhoto")
+                 .imagePreviewContainer
+                  img#coverPreview(src="", alt="") 
+               .modal-footer
+                  button.btn.btn-secondary(type='button', data-dismiss='modal') Cancel
+                  button#coverPhotoButton.btn.btn-primary(type='button') Save               
+
+mixin createPinnedPostModal()
+     .modal.fade#confirmPinModal(tabindex='-1',role='dialog', aria-labelledby='confirmPinModalLabel', aria-hidden='false')
+        .modal-dialog(role='document')
+            .modal-content
+               .modal-header
+                  h5#confirmPinModalLabel.modal-title Pin this post?
+                  button.close(type='button', data-dismiss='modal', aria-label='Close')
+                     span(aria-hidden='false') &times;
+               .modal-body
+                 p This post will appear at the top of you profile. You can only
+               .modal-footer
+                  button.btn.btn-secondary(type='button', data-dismiss='modal') Cancel
+                  button#pinPostButton.btn.btn-primary(type='button') Pin
+
+mixin createUnPinPostModal()
+     .modal.fade#unPinModal(tabindex='-1',role='dialog', aria-labelledby='unPinModalLabel', aria-hidden='false')
+        .modal-dialog(role='document')
+            .modal-content
+               .modal-header
+                  h5#unPinModalLabel.modal-title Unpin this post?
+                  button.close(type='button', data-dismiss='modal', aria-label='Close')
+                     span(aria-hidden='false') &times;
+               .modal-body
+                 p This post will be unpinned.
+               .modal-footer
+                  button.btn.btn-secondary(type='button', data-dismiss='modal') Cancel
+                  button#unPinPostButton.btn.btn-primary(type='button') Pin                      
+                                               
